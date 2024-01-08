@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.karkar.springboot.mapper.OperatorLoggerMapper">
+
+    <insert id="addOperatorLog" parameterType="OperatorLogger">
+        insert into operator_logger values
+        (#{id}, #{module}, #{operator}, #{timeCost}, now(), #{method}, #{uri}, #{reqParam}, #{respParam}, #{type});
+    </insert>
+
+    <select id="queryAllLogInfo" parameterType="BaseRequest" resultType="OperatorLogger">
+        select * from operator_logger
+    </select>
+
+</mapper>

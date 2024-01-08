@@ -1,0 +1,51 @@
+spring:
+  profiles:
+    active: dev
+
+---
+server:
+  port: 2233
+spring:
+  profiles: dev
+  application:
+    name: springboot-library-admin
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library_admin?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8 # 北京时间
+    username: root
+    password: 3050494918
+mybatis:
+  type-aliases-package: com.karkar.springboot.pojo, com.karkar.springboot.controller.request, com.karkar.springboot.controller.dto
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mybatis/mapper/*.xml
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
+  params: count=countSql
+  reasonable: true
+---
+server:
+  port: 8001
+spring:
+  profiles: prod
+  application:
+    name: springboot-library-admin
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library_admin?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8 # 北京时间
+    username: root
+    password: 3050494918
+mybatis:
+  type-aliases-package: com.karkar.springboot.pojo, com.karkar.springboot.controller.request
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mybatis/mapper/*.xml
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
+  params: count=countSql
+  reasonable: true
